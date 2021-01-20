@@ -1,0 +1,30 @@
+# Tooling
+* nodejs
+* vue cli (npm install -g @vue/cli)
+
+# Useful commands
+* start dev server:
+```
+npm run serve
+```
+* create app (-d means default)
+```
+vue create app-name -d 
+```
+
+# Visual Studio Code hints
+* Ctr + Shift + P -> shortcut for commands eg. create terminal
+
+# Vue notes:
+
+* Data biding is done by <a v-bind:href="github" ...> or by <a :href="github" ...>. By direcitve v-bind we know that 
+the value will be fetch from variable "github"
+
+* Displaying text 
+{{ var1 }} or v-text:="var1" in template
+
+* event biding
+v-on:click="method-name" or @click="method-name"
+
+* 2way binding (when we want update variable using input)
+v-model="var1"
