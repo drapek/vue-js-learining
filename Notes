@@ -28,3 +28,12 @@ v-on:click="method-name" or @click="method-name"
 
 * 2way binding (when we want update variable using input)
 v-model="var1"
+
+* for looping
+<ul v-for="elem in list" :key="elem.id">
+
+* conditional element printing
+<div v-if="variable">
+
+* hidding elements (they aren't removed from DOM)
+<div v-show="var">
