@@ -37,3 +37,64 @@ v-model="var1"
 
 * hidding elements (they aren't removed from DOM)
 <div v-show="var">
+
+* computed properties - they change only when their dependencies changes
+
+computed : {
+    fullName() {
+        return `${this.hero.firstName} ${this.hero.LastName}`;
+    }
+}
+
+* or we can use getter / setter
+coputed: {
+    fullName: {
+        get() {
+            return 'abc';
+        },
+        set(value) {
+            this.last = value.split(' ')[1];
+        }
+    }
+}
+
+* lifecycle hooks - an methods called on some events
+    - created - invoke on component creationg, very often used for data fetch, DOM is not yet mounted
+
+* watchers 
+    - reacts to data changes
+    - the function is named the same as reactive value
+    - ideal for asynchronous operations
+
+watch: {
+    hero(newVal, oldVal) {
+        // logic
+    },
+    'selectedHero.capeCounter': {
+        immediate: true, 
+        handler(newVal, oldVal) {
+            // logic
+        },
+    },
+}
+
+* filters
+    - localfilter are defined in a component
+    ```
+    filters: {
+        capitalize: function(value) {
+            return '';
+        },
+    },
+    ```
+    - they can be applied in template {{ firstName | capitalize }}
+    - they can be chained
+    - arguments can be passed
+    - global can be defined once 
+    ```
+    import Vue from 'vue'
+
+    Vue.filter('capitalize', function(value) {
+        return '';
+    });
+    ```

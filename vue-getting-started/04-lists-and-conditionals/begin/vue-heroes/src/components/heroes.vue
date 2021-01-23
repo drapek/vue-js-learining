@@ -39,7 +39,7 @@
               />
             </div>
             <div class="field">
-              <label for="checkbox" class="checkbox">show details</label>
+              <label for="checkbox" class="checkbox">show details </label>
               <input
                 type="checkbox"
                 class="is-primary"
