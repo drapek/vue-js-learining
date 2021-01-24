@@ -98,3 +98,46 @@ watch: {
         return '';
     });
     ```
+
+* defining the components
+    - component can be defind as separate vue file
+    - to use it in other component it must be imported. It can be done using it's name.
+        ```
+        import HeroDetail from '@/components/hero-detail';
+        ```
+    - and must be defined in component section
+        ```
+        components: { HeroDetail },
+        ```
+    - to put it on the parent component an html mark must be used
+        ```
+        <HeroDetail />
+        ```
+
+* props - send data from parent to child component
+    ```
+    // Parent
+    <HeroDetail :hero="selectedHero" />
+
+    // This will be in the child
+    export default {
+        props: {
+            hero: {
+                type: Object,
+                default: () => {},
+            }
+        }
+    }
+    ```
+    <... :hero /> - dynamic prop
+    <... hero /> - static prop
+
+    - components can have validation
+    ```
+    props: {
+        prop1: {
+            type: String,
+            validator: function(value) { return value !== '' };
+        }
+    }
+    ```
