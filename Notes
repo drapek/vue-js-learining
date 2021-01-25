@@ -141,3 +141,14 @@ watch: {
         }
     }
     ```
+
+* emit - sending data from child to parent
+    - in parent these prop should be implemeted
+    ```
+    <HeroDetail v-if="selectedHero" :hero="selectedHero" @cancel="cancelHero" @save="saveHero" />
+    ```
+    -the child should access it by 
+    ```
+    cancelHero() { this.$emit('cancel', this.clonedHero);
+
+    ```
