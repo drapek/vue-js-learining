@@ -5,62 +5,51 @@
         <p class="card-header-title">{{ fullName }}</p>
       </header>
       <div class="card-content">
-          <div class="field">
-            <label class="label" for="id">id</label>
-            <label class="input" name="id" readonly>{{
-              clonedHero.id
-            }}</label>
-          </div>
-          <div class="field">
-            <label class="label" for="firstName">first name</label>
-            <input
-              class="input"
-              name="firstName"
-              v-model="clonedHero.firstName"
-            />
-          </div>
-          <div class="field">
-            <label class="label" for="lastName">last name</label>
-            <input
-              class="input"
-              name="lastName"
-              v-model="clonedHero.lastName"
-            />
-          </div>
-          <div class="field">
-            <label class="label" for="description">description</label>
-            <input
-              class="input"
-              name="description"
-              v-model="hero.description"
-            />
-          </div>
-          <div class="field">
-            <label class="label" for="originDate">origin date</label>
-            <input
-              type="date"
-              class="input"
-              id="originDate"
-              v-model="clonedHero.originDate"
-            />
-            <p class="comment">
-              My origin story began on
-              {{ clonedHero.originDate | shortDate }}
-            </p>
-          </div>
-          <div class="field">
-            <label class="label" for="capeCounter">cape counter</label>
-            <input
-              class="input"
-              name="capeCounter"
-              type="number"
-              v-model="clonedHero.capeCounter"
-            />
-          </div>
-          <div class="field">
-            <label class="label" for="capeMessage">cape message</label>
-            <label class="input" name="capeMessage">{{ capeMessage }}</label>
-          </div>
+        <div class="field">
+          <label class="label" for="id">id</label>
+          <label class="input" name="id" readonly>{{ clonedHero.id }}</label>
+        </div>
+        <div class="field">
+          <label class="label" for="firstName">first name</label>
+          <input
+            class="input"
+            name="firstName"
+            v-model="clonedHero.firstName"
+          />
+        </div>
+        <div class="field">
+          <label class="label" for="lastName">last name</label>
+          <input class="input" name="lastName" v-model="clonedHero.lastName" />
+        </div>
+        <div class="field">
+          <label class="label" for="description">description</label>
+          <input class="input" name="description" v-model="hero.description" />
+        </div>
+        <div class="field">
+          <label class="label" for="originDate">origin date</label>
+          <input
+            type="date"
+            class="input"
+            id="originDate"
+            v-model="clonedHero.originDate"
+          />
+          <p class="comment">
+            My origin story began on
+            {{ clonedHero.originDate | shortDate }}
+          </p>
+        </div>
+        <div class="field">
+          <label class="label" for="capeCounter">cape counter</label>
+          <input
+            class="input"
+            name="capeCounter"
+            type="number"
+            v-model="clonedHero.capeCounter"
+          />
+        </div>
+        <div class="field">
+          <label class="label" for="capeMessage">cape message</label>
+          <label class="input" name="capeMessage">{{ capeMessage }}</label>
         </div>
       </div>
       <footer class="card-footer">
@@ -83,7 +72,7 @@ value
 <script>
 import { format } from 'date-fns';
 
-import { displayDateFormat } from '../shared';
+import { displayDateFormat, lifecycleHooks } from '../shared';
 
 export default {
   name: 'HeroDetail',
@@ -93,24 +82,28 @@ export default {
       default: () => {},
     },
   },
+  mixins: [lifecycleHooks],
   data() {
     return {
       clonedHero: { ...this.hero },
-    }
+    };
   },
   computed: {
     fullName() {
-      return this.clonedHero ? `${this.clonedHero.firstName} ${this.clonedHero.lastName}` : '';
+      return this.clonedHero
+        ? `${this.clonedHero.firstName} ${this.clonedHero.lastName}`
+        : '';
     },
   },
   methods: {
-    cancelHero() { this.$emit('cancel', this.clonedHero);
+    cancelHero() {
+      this.$emit('cancel', this.clonedHero);
 
-      return this.hero = undefined;
+      return (this.hero = undefined);
     },
-    saveHero() { 
-      this.$emit('save', this.clonedHero)
-     },
+    saveHero() {
+      this.$emit('save', this.clonedHero);
+    },
     handleTheCapes(newValue) {
       const value = parseInt(newValue, 10);
       switch (value) {

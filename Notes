@@ -152,3 +152,8 @@ watch: {
     cancelHero() { this.$emit('cancel', this.clonedHero);
 
     ```
+
+* mixins - for sharing common logic across components
+    - The strategy for merging mixin object is:
+        - methods, components, computeds, data - merged, but component are overriding the mixins
+        - watch and hooks - both run, mixins before components
