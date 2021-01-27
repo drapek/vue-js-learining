@@ -157,3 +157,17 @@ watch: {
     - The strategy for merging mixin object is:
         - methods, components, computeds, data - merged, but component are overriding the mixins
         - watch and hooks - both run, mixins before components
+
+* Getting Data
+    - axios - promise based http client 
+    ```
+    await axios({method: 'post', url: 'api/heroes', headers: ..., data: {...}})
+    ```
+    - because it is promise, we need to add async dyrecitve to a parent function eg.
+    ```
+    methods: {
+        async getHeroes() {
+            await axios.get('api/heroes');
+        }
+    }
+    ```
