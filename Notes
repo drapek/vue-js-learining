@@ -171,3 +171,7 @@ watch: {
         }
     }
     ```
+
+* Routing
+   - Vue Router
+   - install via vue add router
