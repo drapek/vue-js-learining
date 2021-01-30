@@ -175,4 +175,42 @@ watch: {
 * Routing
    - Vue Router
    - install via vue add router
-   - define route.js
+   - it will create route.js. In this file you attach te component on two ways:
+        - direct way: component: ComponentName, but it must be imported earlier
+        - lazy way: component: () =>
+        import(/* webpackChunkName: "bundle-heroes" */ './views/hero-detail.vue'),
+      // component: HeroDetail,
+      props: parseProps,
+
+* Vuex - managing data state 
+    - central store of managing the data 
+    - installing: vue add vuex
+    - adding storage data to component
+        // 1st way
+        heroes() {
+           return this.$store.state.heroes;
+         }
+        
+        // 2nd way
+         ...mapState({heroes: state => state.heroes}),
+        // 3rd way
+        ...mapState({ heroes: 'heroes'}),
+    - store is edited always by mutations
+    - actions starts mutations
+
+* Cloning the objects
+    this.hero = { ...this.getHeroById(this.id) }; // But it doesn't make a deep clone
+
+    // Deep clone (lodash package)
+    this.hero = deepClone(object)
+
+# Javascript trics
+
+* To fetch only one intresting parameter insted of whole object we can use:
+    ```
+    async addHeroAction({commit}, hero) {}
+    ```
+    Instead of
+    ```
+    async addHeroAction(context, hero) {context.commit = ''}
+    ```

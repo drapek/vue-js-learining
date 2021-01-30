@@ -16,20 +16,19 @@
                   </div>
                 </div>
                 <footer class="card-footer">
-                  <router-link
-                    :to="{ name: 'hero-detail', params: { id: hero.id } }"
+                  <router-link :to="{name: 'hero-detail', params: {id: hero.id} }"
                     tag="button"
                     class="link card-footer-item"
                   >
-                    <i class="fas fa-check"></i>
+                   <i class="fas fa-check"></i>
                     <span>Select</span>
+
                   </router-link>
                 </footer>
               </div>
             </li>
           </ul>
         </div>
-
         <div class="notification is-info" v-show="message">{{ message }}</div>
       </div>
     </div>
@@ -59,6 +58,7 @@ export default {
 
       this.message = '';
     },
+
   },
 };
 </script>

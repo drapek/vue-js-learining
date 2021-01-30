@@ -61,13 +61,12 @@
 
 <script>
 import Modal from '@/components/modal';
-import { dataService } from '../shared';
+import { mapActions, mapState } from 'vuex';
 
 export default {
   name: 'Heroes',
   data() {
     return {
-      heroes: [],
       heroToDelete: null,
       message: '',
       showModal: false,
@@ -80,6 +79,7 @@ export default {
     await this.loadHeroes();
   },
   methods: {
+    ...mapActions(['getHeroesAction', 'deleteHeroAction']),
     askToDelete(hero) {
       this.heroToDelete = hero;
       this.showModal = true;
@@ -90,18 +90,33 @@ export default {
     async deleteHero() {
       this.closeModal();
       if (this.heroToDelete) {
-        dataService.deleteHero(this.heroToDelete);
+        // 1st option
+        // await this.deleteAction(this.heroToDelete);
+        // 2nd option
+        // await this.$store.dispatch('deleteHeroAction', this.heroToDelete);
+        // 3rd option
+        this.deleteHeroAction(this.heroToDelete);
       }
       await this.loadHeroes();
     },
     async loadHeroes() {
-      this.heroes = [];
       this.message = 'getting the heroes, please be patient';
-      this.heroes = await dataService.getHeroes();
+      // this.heroes = await dataService.getHeroes();
+      await this.getHeroesAction();
       this.message = '';
     },
   },
   computed: {
+    // 1st way
+    // heroes() {
+    //   return this.$store.state.heroes;
+    // }
+    // 2nd way
+    // ...mapState({heroes: state => state.heroes}),
+    // 3rd way
+    // ...mapState({ heroes: 'heroes'}),
+    // 4th way
+    ...mapState(['heroes']),
     modalMessage() {
       const name =
         this.heroToDelete && this.heroToDelete.fullName
