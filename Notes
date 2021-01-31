@@ -14,6 +14,7 @@ vue create app-name -d
 
 # Visual Studio Code hints
 * Ctr + Shift + P -> shortcut for commands eg. create terminal
+* Ctrl + j - show / hide terminal
 
 # Vue notes:
 
@@ -21,30 +22,30 @@ vue create app-name -d
 the value will be fetch from variable "github"
 
 * Displaying text 
-{{ var1 }} or v-text:="var1" in template
+    {{ var1 }} or v-text:="var1" in template
 
 * event biding
-v-on:click="method-name" or @click="method-name"
-
-* 2way binding (when we want update variable using input)
-v-model="var1"
+    // 1st way
+    v-on:click="method-name" or @click="method-name"
+    // 2way binding (when we want update variable using input)
+    v-model="var1"
 
 * for looping
-<ul v-for="elem in list" :key="elem.id">
+    <ul v-for="elem in list" :key="elem.id">
 
 * conditional element printing
-<div v-if="variable">
+    <div v-if="variable">
 
 * hidding elements (they aren't removed from DOM)
-<div v-show="var">
+    <div v-show="var">
 
 * computed properties - they change only when their dependencies changes
 
-computed : {
-    fullName() {
-        return `${this.hero.firstName} ${this.hero.LastName}`;
+    computed : {
+        fullName() {
+            return `${this.hero.firstName} ${this.hero.LastName}`;
+        }
     }
-}
 
 * or we can use getter / setter
 coputed: {
@@ -199,9 +200,10 @@ watch: {
     - actions starts mutations
 
 * Cloning the objects
+    // Traditional way
     this.hero = { ...this.getHeroById(this.id) }; // But it doesn't make a deep clone
 
-    // Deep clone (lodash package)
+    // Deep clone (lodash package need to be installed and imported)
     this.hero = deepClone(object)
 
 # Javascript trics
